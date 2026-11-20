@@ -19,7 +19,7 @@ This is a concept company-profile landing page for **Mr Build**, a building supp
 4. Use "**38 years**" for the company's age. The source is the client's Oct 2026 flyer.
 5. Keep the black "Design concept" strip at the top until the client approves the page.
 6. **Few words.** The client asked for more graphics and fewer words. Headlines of 2-4 words, one short line under them. No filler, no em dashes, no emoji.
-7. **Do not describe The Builder as a sister brand, subsidiary or partner until the client confirms.** Only call its branches collection points.
+7. **The Builder is Mr Build's sister brand** (client confirmed Nov 2026). Its mascot is Bob (`img/bob.png`, map icon `img/bob-pin.png`, white pin). Its branches are still labelled collection points. Source logos are in `assets/logos/` (not published).
 
 ## Design system (v2)
 - **Colours:** only 4. `--red` #D9232A, `--yellow` #F3DD27, `--black` #111, `--white` #fff. No greys and no cream.
@@ -54,11 +54,10 @@ This is a concept company-profile landing page for **Mr Build**, a building supp
 - [ ] Is "Mr Build Wood" (signage in the client's drone photos) a store or a department?
 - [ ] Real store photos: ask the client for their own Google Business Profile photos or new shots of each store. Photos uploaded to Google Maps by the public belong to those users, so don't copy them.
 - [ ] Which branches are in `store-yard.jpg`, `store-front.jpg` and `store-pylon.jpg`? Alt text stays generic until we know.
-- [ ] Check each branch's map pin with the client. Some are town-level, not the exact site.
+- [ ] Check each branch's map pin with the client. Some are town-level, not the exact site. Giyani and Thohoyandou pins (Mr Build and The Builder) sit on top of each other until we have exact coordinates.
 - [ ] **Contact form backend.** The form has `data-concept="true"` and a `REPLACE_ME` Formspree URL. Wire it up and remove `data-concept`.
 - [ ] Confirm per-branch hours (all branches use the same hours now).
 - [ ] Wrapped doors: colours and lead times.
-- [ ] Ask the client how Mr Build and The Builder are related.
 - [ ] Re-check product counts before launch.
 - [ ] When the real domain is known, change `BASE` in `tools/build.py`.
 

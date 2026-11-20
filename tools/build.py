@@ -184,7 +184,7 @@ def mapblock(dark=False):
     items = []
     for b in BRANCHES:
         sub = "Collection point" if b[2]=="tb" else ("Head office" if b[0]=="tzaneen" else "Mr Build")
-        items.append(f'''<li class="{b[2]}"><button type="button" data-store="{b[0]}" aria-pressed="false"><span class="pinmini"><img src="img/buddy.svg" alt=""></span><span><strong>{"The Builder " if b[2]=="tb" else ""}{b[1]}</strong><small>{sub} · <a href="tel:{e164(b[7])}">{b[7]}</a></small></span></button></li>''')
+        items.append(f'''<li class="{b[2]}"><button type="button" data-store="{b[0]}" aria-pressed="false"><span class="pinmini"><img src="img/{'bob-pin.png' if b[2]=='tb' else 'buddy.svg'}" alt=""></span><span><strong>{"The Builder " if b[2]=="tb" else ""}{b[1]}</strong><small>{sub} · <a href="tel:{e164(b[7])}">{b[7]}</a></small></span></button></li>''')
     data = json.dumps([{"id":b[0],"n":full(b),"k":b[2],"a":esc(", ".join(x for x in [b[4],b[5]] if x)),"t":b[7],"e":e164(b[7]),"d":maps(b),"ll":[b[9],b[10]]} for b in BRANCHES], ensure_ascii=False)
     return f'''<div class="mapwrap">
       <div class="map" id="map" role="region" aria-label="Map of Mr Build stores"><p class="nojs">The map needs JavaScript. All stores are listed here.</p></div>
