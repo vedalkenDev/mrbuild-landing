@@ -5,7 +5,12 @@ Read this file before you change anything. `docs/04-handoff.md` and `docs/01-res
 ## What this is
 This is a concept company-profile landing page for **Mr Build**, a building supplies and hardware chain in Limpopo, South Africa. The page tells people who the company is and sends shoppers to the online store, **https://mrbuild-online.co.za**. It does not sell anything itself.
 
-- It is a static site: `public/index.html` holds the HTML, the inline CSS and the inline JS, with no build step. Photos are in `public/img/`.
+- It is a static multi-page site with no build step:
+  - `public/index.html` (home), `services.html`, `branches.html`, `about.html`, `contact.html`
+  - `public/css/site.css`: all styles, shared by every page
+  - `public/js/site.js`: all behaviour, shared by every page. Pages must work without it (no content depends on JS).
+  - Photos and the mascot are in `public/img/`.
+- The nav, concept strip and footer are copied into all 5 pages. Change all 5 when you change one. Set `aria-current="page"` on the current page's nav and drawer links.
 - The approved design is direction "A1 · Yard Bold". Full-page reference renders are in `docs/reference/A1-desktop-final.jpg` and `docs/reference/A1-mobile.jpg`.
 - The source design lives in the Figcraft file `mrbuild.figcraft`, which stays with the designer and is not in this repo.
 
@@ -13,7 +18,7 @@ This is a concept company-profile landing page for **Mr Build**, a building supp
 1. **Keep the client's logo and colours.** Do not restyle the brand.
 2. **No AI-generated images.** Use Pexels or other free-licence photos, or the client's own photos. All photos are placeholders until the client sends real ones.
 3. **Collection only, no delivery.** Never write copy that offers delivery.
-4. Use "**38 years**" for the company's age.
+4. Use "**38 years**" for the company's age. The source is the client's Oct 2026 flyer (see `docs/01-research-brief.md`).
 5. Keep the yellow "Design concept" strip at the top until the client approves the page.
 6. Watch for AI-looking copy and design after every change:
    - no filler words ("seamless", "elevate", "one-stop shop")
@@ -42,12 +47,19 @@ This is a concept company-profile landing page for **Mr Build**, a building supp
 
 The page commits to one light look on purpose. Do not add dark mode.
 
-## Page order
+## Pages
+- **Home:** see the section order below. One main button (the yellow shop CTA); "Find your branch" is a text link.
+- **Services:** hero, jump bar, 6 product cards linking to store categories, the in-store band (cutting & edging, wrapped doors, 3 real steps, cutting slip), brands wall.
+- **Branches:** district filter chips, one card per branch with a live open/closed pill (SA time, from `site.js`), hours, Call / Email / Directions, then the collect box. JSON-LD has a `HardwareStore` per branch.
+- **About:** red hero with the 38 count-up, Meet Mr Build (client mascot), What we do, Where we trade, brands wall.
+- **Contact:** form (name, branch, phone, email, topic, message; phone or email required) and head office / branch phone boxes.
+
+## Home page order
 Each section's `id` is in brackets.
 
 1. Concept strip
 2. Sticky nav (`#top`): logo, links and the red "Shop online" button. On mobile, a hamburger opens a drawer.
-3. Hero: kicker listing the towns, "BUILDING LIMPOPO FOR 38 YEARS.", sub-line, a yellow shop CTA and a ghost "Find your branch" button.
+3. Hero: kicker listing the towns, "BUILDING LIMPOPO FOR 38 YEARS.", sub-line, a yellow shop CTA and a "Find your branch" text link to branches.html.
 4. Red fact strip with 4 facts.
 5. Shop by department (`#departments`), a mosaic:
    - Hardware, the big card, 5,643 products
@@ -84,16 +96,15 @@ Each section's `id` is in brackets.
 - **Reduced motion:** `prefers-reduced-motion` removes movement but keeps short fades. Keep that block up to date.
 
 ## Open items / TODO
-- [ ] Department cards all link to the store home page. Swap in the real category URLs from mrbuild-online.co.za.
-- [ ] The Facebook link is a placeholder. Get the real page URL from the client.
+- [ ] **Contact form backend.** The form has `data-concept="true"`, so it shows the sent state without sending. To go live: create a Formspree (or similar) form, put its URL in `action`, and remove `data-concept`. Then send a test message from a phone.
+- [ ] Confirm per-branch hours. All branches currently use the same hours (`site.js` `branchStatus()` and the JSON-LD assume this).
+- [ ] Wrapped doors: get colours and lead times from the client.
 - [ ] Swap `img/logo.png` (raster, 400×133) for the vector logo when the client sends it.
 - [ ] Replace the Pexels photos (`hero`, `hardware`, `plumbing`, `paint`, `wood`, `building`) with the client's own photos.
 - [ ] Confirm the branch phone numbers, addresses and hours with the client.
 - [ ] Ask client how Mr Build and The Builder are related.
-- [ ] Confirm the '38 years' figure. A 2021 Cartrack case study says Mr Build was established in 2007.
 - [ ] Re-check the product counts before launch, since they drift.
-- [ ] Optional: add SEO meta tags, Open Graph tags and LocalBusiness JSON-LD for each branch.
-- [ ] Optional: deploy `public/` to Netlify, Vercel or Cloudflare Pages.
+- [ ] When the real domain is known, replace `https://vedalkendev.github.io/mrbuild-landing/` in every canonical, `og:` and JSON-LD URL.
 
 ## Run locally
 ```
@@ -102,19 +113,15 @@ npx serve public
 Opening `public/index.html` directly in a browser also works.
 
 ## Hosting: GitHub Pages
-The site deploys from `public/` through GitHub Actions (`.github/workflows/pages.yml`) on every push to `main`.
+Live at https://vedalkendev.github.io/mrbuild-landing/
 
-First-time setup, done with the GitHub CLI (`gh`):
-1. `gh auth status`. If you are not logged in, run `gh auth login` (GitHub.com, HTTPS, log in with a browser). The user completes this step in the browser. Never ask the user to paste a token into chat.
-2. `git init -b main && git add -A && git commit -m "Initial commit: Mr Build landing page concept"`
-3. `gh repo create mrbuild-landing --public --source=. --remote=origin --push`
-   Pages on a private repo needs a paid GitHub plan, so the repo is public.
-4. Turn on Pages with Actions as the source:
-   `gh api -X POST repos/{owner}/mrbuild-landing/pages -f build_type=workflow`
-   If Pages is already on, use `-X PUT` instead.
-5. Watch the deploy with `gh run watch`, then print the URL:
-   `gh api repos/{owner}/mrbuild-landing/pages --jq .html_url`
-   The URL looks like `https://<username>.github.io/mrbuild-landing/`.
+Pages builds from the **`gh-pages` branch** (root), which holds only the contents of `public/`. To deploy after committing to `main`:
+```
+git subtree split --prefix public -b gh-pages-tmp
+git push -f origin gh-pages-tmp:gh-pages
+git branch -D gh-pages-tmp
+```
+Keep `public/.nojekyll`. Never ask the user to paste a token into chat; if `gh auth status` fails, the user runs `gh auth login` in the browser.
 
-All asset paths are relative (`img/...`), so the site works under the `/mrbuild-landing/` sub-path. Keep them relative.
+All asset paths are relative (`img/...`, `css/...`), so the site works under the `/mrbuild-landing/` sub-path. Keep them relative.
 The site is public, so the yellow "Design concept" strip must stay until the client signs off.
