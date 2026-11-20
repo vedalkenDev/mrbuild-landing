@@ -173,8 +173,8 @@
       Object.keys(markers).forEach(function(k){ var el = markers[k].getElement(); if(el) el.classList.toggle('on', k === id); });
     };
     stores.forEach(function(s){
-      var icon = L.divIcon({className:'bpin ' + s.k, html:'<span><img src="img/buddy.svg" alt=""></span>', iconSize:[46,58], iconAnchor:[23,58], popupAnchor:[0,-56]});
-      var m = L.marker(s.ll, {icon:icon, title:s.n, keyboard:true}).addTo(map);
+      var icon = L.divIcon({className:'bpin ' + s.k, html:'<span><img src="img/' + (s.k === 'tb' ? 'bob-pin.png' : 'buddy.svg') + '" alt=""></span>', iconSize:[46,58], iconAnchor:[23,58], popupAnchor:[0,-56]});
+      var m = L.marker(s.ll, {icon:icon, title:s.n, keyboard:true, zIndexOffset:s.k === 'tb' ? 500 : 0}).addTo(map);
       m.bindPopup('<strong>' + s.n + '</strong>' + (s.a ? s.a + '<br>' : '') + '<a href="tel:' + s.e + '">' + s.t + '</a> · <a href="' + s.d + '" target="_blank" rel="noopener">Directions</a>');
       m.on('click', function(){ setOn(s.id); });
       markers[s.id] = m;
