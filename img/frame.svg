@@ -1,0 +1,16 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 600 470" fill="#D9232A" stroke="#111" stroke-width="6" stroke-linejoin="round">
+  <!-- ground shadow -->
+  <ellipse cx="300" cy="458" rx="250" ry="10" fill="#111" stroke="none" opacity=".18"/>
+  <!-- back diagonal brace -->
+  <path d="M470 150 L560 40 L578 52 L490 166 Z"/>
+  <path d="M130 150 L52 52 L34 64 L110 168 Z"/>
+  <!-- posts, leaning in slightly -->
+  <path d="M98 70 L136 70 L150 460 L112 460 Z"/>
+  <path d="M464 70 L502 70 L488 460 L450 460 Z"/>
+  <!-- lower crossbeam -->
+  <path d="M40 118 L566 96 L568 124 L42 148 Z"/>
+  <!-- top crossbeam, slanted, ends cut at an angle -->
+  <path d="M8 66 L592 22 L578 56 L22 98 Z"/>
+  <!-- bolts -->
+  <g fill="#111" stroke="none"><circle cx="117" cy="80" r="5"/><circle cx="483" cy="52" r="5"/><circle cx="121" cy="132" r="4"/><circle cx="481" cy="112" r="4"/></g>
+</svg>

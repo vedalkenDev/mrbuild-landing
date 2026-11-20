@@ -160,13 +160,45 @@
     });
   }
 
+  // Store map (Leaflet + OpenStreetMap). The list beside it works without JS.
+  var mapEl = document.getElementById('map'), dataEl = document.getElementById('store-data');
+  if(mapEl && dataEl && window.L){
+    var stores = JSON.parse(dataEl.textContent);
+    mapEl.innerHTML = '';
+    var map = L.map(mapEl, {scrollWheelZoom:false, zoomControl:true, attributionControl:true});
+    L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {maxZoom:18, attribution:'&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a>'}).addTo(map);
+    var markers = {}, btns = $$('.stores button[data-store]');
+    var setOn = function(id){
+      btns.forEach(function(b){ b.setAttribute('aria-pressed', b.getAttribute('data-store') === id); });
+      Object.keys(markers).forEach(function(k){ var el = markers[k].getElement(); if(el) el.classList.toggle('on', k === id); });
+    };
+    stores.forEach(function(s){
+      var icon = L.divIcon({className:'bpin ' + s.k, html:'<span><img src="img/buddy.svg" alt=""></span>', iconSize:[46,58], iconAnchor:[23,58], popupAnchor:[0,-56]});
+      var m = L.marker(s.ll, {icon:icon, title:s.n, keyboard:true}).addTo(map);
+      m.bindPopup('<strong>' + s.n + '</strong>' + (s.a ? s.a + '<br>' : '') + '<a href="tel:' + s.e + '">' + s.t + '</a> · <a href="' + s.d + '" target="_blank" rel="noopener">Directions</a>');
+      m.on('click', function(){ setOn(s.id); });
+      markers[s.id] = m;
+    });
+    var all = L.featureGroup(Object.keys(markers).map(function(k){ return markers[k]; }));
+    map.fitBounds(all.getBounds(), {padding:[40,40]});
+    btns.forEach(function(b){
+      b.addEventListener('click', function(e){
+        if(e.target.closest('a')) return;
+        var id = b.getAttribute('data-store'), m = markers[id];
+        setOn(id);
+        map.flyTo(m.getLatLng(), 14, {duration: reduce ? 0 : .8});
+        m.openPopup();
+      });
+    });
+  }
+
   // Scroll reveal: only hide what starts below the fold, so the first frame is complete.
   var items = $$('.rv');
   if(!('IntersectionObserver' in window)) return;
   var vh = window.innerHeight;
   // Stagger cards in a grid 60ms apart
-  $$('.dept,.svc,.bgrid,.whatwe').forEach(function(g){
-    $$(':scope > .rv', g).forEach(function(c,i){ c.style.setProperty('--d', (i*60)+'ms'); });
+  $$('.pylon,.bgrid,.brands,.panels,.yards').forEach(function(g){
+    $$(':scope > .rv', g).forEach(function(c,i){ c.style.setProperty("--d", (Math.min(i,8)*60)+"ms"); });
   });
   var io = new IntersectionObserver(function(entries){
     entries.forEach(function(en){
