@@ -7,6 +7,7 @@
 <meta name="description" content="Six Mr Build branches across Vhembe and Mopani. Cement, timber, plumbing, paint and tools. Order online and collect in store, including at The Builder in Thohoyandou and Giyani. Collection only, no delivery.">
 <meta name="theme-color" content="#D9232A">
 <link rel="canonical" href="https://vedalkendev.github.io/mrbuild-landing/">
+<link rel="preload" as="image" href="img/hero.jpg">
 <meta property="og:type" content="website">
 <meta property="og:locale" content="en_ZA">
 <meta property="og:site_name" content="Mr Build">
@@ -225,6 +226,7 @@ img{max-width:100%;display:block}
 h1,h2,h3{font-family:var(--display);font-weight:800;text-transform:uppercase;line-height:.95;margin:0;text-wrap:balance}
 p{margin:0}
 :focus-visible{outline:3px solid var(--yellow);outline-offset:3px;border-radius:2px}
+.btn-yellow:focus-visible{outline-color:var(--ink)}
 .band{padding-left:var(--gut-l);padding-right:var(--gut-r)}
 .wrap{max-width:1200px;margin:0 auto}
 .label{font-family:var(--body);font-weight:700;font-size:12px;letter-spacing:.1em;text-transform:uppercase}
@@ -232,7 +234,7 @@ p{margin:0}
 
 /* Buttons: press feedback per Emil (scale .97, 160ms ease-out) */
 .btn{display:inline-flex;align-items:center;justify-content:center;gap:10px;height:52px;padding:0 24px;border-radius:4px;font-weight:700;font-size:16px;text-decoration:none;border:2px solid transparent;cursor:pointer;
-  transition:transform 160ms var(--ease-out),background-color 200ms ease,color 200ms ease,border-color 200ms ease}
+  transition:transform 160ms var(--ease-out),background-color 200ms var(--ease-out),color 200ms var(--ease-out),border-color 200ms var(--ease-out)}
 .btn:active{transform:scale(.97)}
 .btn .arr{display:inline-block;transition:transform 200ms var(--ease-out)}
 .btn-yellow{background:var(--yellow);color:var(--ink)}
@@ -247,7 +249,7 @@ p{margin:0}
 
 .concept{background:var(--yellow);color:var(--ink);font-weight:600;font-size:13px;line-height:1.35;padding-block:8px;text-align:center}
 /* Nav */
-.nav{position:sticky;top:env(safe-area-inset-top,0px);z-index:50;background:var(--white);transition:box-shadow 200ms ease}
+.nav{position:sticky;top:env(safe-area-inset-top,0px);z-index:50;background:var(--white);transition:box-shadow 200ms var(--ease-out)}
 .nav.scrolled{box-shadow:0 1px 0 var(--g4),0 6px 20px rgba(26,25,25,.06)}
 .nav .wrap{display:flex;align-items:center;gap:24px;height:68px}
 .logo{display:block;width:132px;flex:none}
@@ -266,8 +268,8 @@ p{margin:0}
 /* Mobile drawer: drops from under the nav, origin top. Enter 280ms, exit faster 180ms. */
 .drawer{position:absolute;left:0;right:0;top:100%;background:var(--white);border-top:1px solid var(--g4);box-shadow:0 18px 30px rgba(26,25,25,.12);
   padding:8px var(--gut-r) 20px var(--gut-l);transform-origin:top;opacity:0;transform:translateY(-8px) scaleY(.97);visibility:hidden;pointer-events:none;
-  transition:opacity 180ms ease,transform 180ms var(--ease-out),visibility 0s linear 180ms}
-.drawer.open{opacity:1;transform:none;visibility:visible;pointer-events:auto;transition:opacity 240ms ease,transform 280ms var(--ease-drawer),visibility 0s}
+  transition:opacity 180ms var(--ease-out),transform 180ms var(--ease-out),visibility 0s linear 180ms}
+.drawer.open{opacity:1;transform:none;visibility:visible;pointer-events:auto;transition:opacity 240ms var(--ease-out),transform 280ms var(--ease-drawer),visibility 0s}
 .drawer a{display:block;padding:14px 0;border-bottom:1px solid var(--g5);font-family:var(--display);font-weight:800;font-size:28px;text-transform:uppercase;text-decoration:none}
 .drawer a:last-child{border-bottom:0}
 
@@ -277,7 +279,7 @@ p{margin:0}
 .hero::after{content:"";position:absolute;inset:0;z-index:-1;background:linear-gradient(90deg,rgba(17,16,16,.92) 0%,rgba(17,16,16,.72) 45%,rgba(17,16,16,.15) 100%),linear-gradient(0deg,rgba(17,16,16,.55),rgba(17,16,16,0) 40%)}
 .hero .wrap{padding-block:112px 104px;display:grid;gap:22px;justify-items:start}
 .kicker{color:var(--yellow)}
-.hero h1{font-size:clamp(60px,10vw,128px);letter-spacing:-.005em}
+.hero h1{font-size:clamp(60px,10vw,128px);letter-spacing:-.02em}
 .hero h1 .line{display:block;overflow:hidden;padding-bottom:.04em;margin-bottom:-.04em}
 .hero h1 .line>span{display:block}
 .hero h1 .yel{color:var(--yellow)}
@@ -311,7 +313,7 @@ p{margin:0}
 .head p{color:var(--g2);max-width:36ch}
 
 /* Department mosaic */
-.dept{display:grid;grid-template-columns:2fr 1fr 1fr;grid-template-rows:repeat(2,minmax(240px,auto));gap:12px}
+.dept{display:grid;grid-template-columns:2fr 1fr 1fr;grid-template-rows:repeat(2,minmax(260px,1fr));gap:12px}
 .card{position:relative;display:flex;flex-direction:column;justify-content:flex-end;gap:6px;padding:22px;min-height:240px;border-radius:4px;overflow:hidden;isolation:isolate;
   background:var(--ink);color:var(--white);text-decoration:none;transition:transform 160ms var(--ease-out)}
 .card:active{transform:scale(.985)}
@@ -331,13 +333,13 @@ p{margin:0}
 .card-hw .go{margin-top:10px;font-weight:700;color:var(--yellow);font-size:15px}
 .card-el{background:var(--yellow);color:var(--ink)}
 .card-el::before{display:none}
-.card-el .big{font-family:var(--display);font-weight:800;font-size:96px;line-height:.85;color:var(--red);margin-bottom:auto}
+.card-el .big{font-family:var(--display);font-weight:800;font-size:108px;line-height:.85;color:var(--red);margin-bottom:auto}
 .card-el p{color:var(--g1)}
-.card-bm{grid-column:1/-1;flex-direction:row;align-items:center;justify-content:flex-start;min-height:0;padding:0;gap:0;background:var(--ink)}
+.card-bm{grid-column:1/-1;flex-direction:row;align-items:center;justify-content:flex-start;min-height:0;padding:0;gap:0;background:var(--ink);flex-wrap:nowrap}
 .card-bm::before{display:none}
 .card-bm .ph{position:relative;inset:auto;z-index:0;width:30%;align-self:stretch;min-height:120px}
 .card-bm .txt{display:grid;gap:4px;padding:22px 28px;flex:1;min-width:0}
-.card-bm .btn{margin-right:20px;flex:none}
+.card-bm .btn{margin-right:20px;flex:none;white-space:nowrap}
 
 /* Cutting */
 .cut{background:var(--ink);color:var(--white)}
@@ -364,7 +366,7 @@ p{margin:0}
 .district h3{font-size:22px;display:flex;align-items:baseline;gap:12px;padding-bottom:10px;border-bottom:2px solid var(--ink)}
 .district h3 small{font-family:var(--body);font-weight:400;font-size:14px;text-transform:none;color:var(--g2)}
 .district ul{list-style:none;margin:0;padding:0}
-.district li{display:flex;justify-content:space-between;align-items:center;gap:16px;padding:14px 8px;margin-inline:-8px;border-bottom:1px solid var(--g4);border-radius:2px;transition:background-color 200ms ease}
+.district li{display:flex;justify-content:space-between;align-items:center;gap:16px;padding:14px 8px;margin-inline:-8px;border-bottom:1px solid var(--g4);border-radius:2px;transition:background-color 200ms var(--ease-out)}
 @media (hover:hover) and (pointer:fine){.district li:hover{background:var(--g5)}}
 .district .town{font-family:var(--display);font-weight:700;font-size:22px;line-height:1.1}
 .district .addr{font-size:13px;color:var(--g2)}
@@ -377,7 +379,7 @@ p{margin:0}
 /* Story */
 .story{background:var(--red);color:var(--white)}
 .story .wrap{display:grid;grid-template-columns:auto 1.4fr 1fr;gap:56px;align-items:start}
-.yrs .n{font-family:var(--display);font-weight:900;font-size:clamp(170px,20vw,260px);line-height:.8;font-variant-numeric:tabular-nums;display:block}
+.yrs .n{font-family:var(--display);font-weight:900;font-size:clamp(180px,22vw,280px);line-height:.8;font-variant-numeric:tabular-nums;display:block}
 .yrs .l{font-family:var(--display);font-weight:700;font-size:24px;text-transform:uppercase;color:var(--yellow);margin-top:14px;display:block}
 .story h2{font-family:var(--slab);font-weight:700;text-transform:none;font-size:clamp(32px,3.4vw,42px);line-height:1.1;margin-bottom:16px}
 .story .copy p{font-weight:500;font-size:17px;max-width:48ch}
@@ -395,7 +397,7 @@ p{margin:0}
 .foot-grid .blurb{margin-top:14px;font-size:14px;color:var(--g3);max-width:30ch}
 .foot-grid .label{color:var(--yellow);margin-bottom:10px}
 .foot-grid ul{list-style:none;margin:0;padding:0;display:grid;gap:6px;font-size:15px}
-.foot-grid a{text-decoration:none;color:var(--g4);transition:color 160ms ease}
+.foot-grid a{text-decoration:none;color:var(--g4);transition:color 160ms var(--ease-out)}
 @media (hover:hover) and (pointer:fine){.foot-grid a:hover{color:var(--white)}}
 .legal{padding-block:0 32px;font-size:12px;color:var(--g2)}
 
@@ -436,9 +438,9 @@ p{margin:0}
   .card h3{font-size:24px;gap:6px}
   .card p{font-size:13px}
   .card .count{font-size:12px}
-  .card-hw{padding:22px}
+  .card-hw{padding:22px;min-height:340px}
   .card-hw h3{font-size:52px}
-  .card-el .big{font-size:76px}
+  .card-el .big{font-size:88px}
   .card-bm{flex-wrap:wrap}
   .card-bm .ph{width:100%;min-height:110px}
   .card-bm .txt{padding:16px}
@@ -454,8 +456,11 @@ p{margin:0}
 @media (prefers-reduced-motion:reduce){
   html{scroll-behavior:auto}
   .motion .hero *, .motion .hero-photo{animation:none!important}
-  .rv,.rv.pending,.slip li,.slip.pending li{transform:none!important;transition:opacity 200ms ease!important}
-  .card .ph,.slip,.btn,.card{transition:none}
+  .rv,.rv.pending,.slip li,.slip.pending li{transform:none!important;transition:opacity 200ms var(--ease-out)!important}
+  .card .ph,.slip,.btn,.card,.menu-btn,.menu-btn span{transition:none}
+  .btn:active,.card:active,.menu-btn:active{transform:none}
+  .drawer,.drawer.open{transform:none;transition:opacity 180ms var(--ease-out),visibility 0s linear 180ms}
+  .drawer.open{transition:opacity 180ms var(--ease-out),visibility 0s}
 }
 </style>
 </head>
@@ -470,15 +475,17 @@ p{margin:0}
       <li><a href="#cutting">In-store services</a></li>
       <li><a href="#branches">Branches</a></li>
       <li><a href="#brands">Brands</a></li>
+      <li><a href="#branches">Contact</a></li>
     </ul>
     <a class="btn btn-red" href="https://mrbuild-online.co.za" target="_blank" rel="noopener">Shop online</a>
     <button class="menu-btn" id="menu-btn" aria-label="Menu" aria-expanded="false" aria-controls="drawer"><span></span><span></span><span></span></button>
   </div>
   <nav class="drawer" id="drawer" aria-label="Mobile">
-    <a href="#departments">Departments</a>
-    <a href="#cutting">Cut to size</a>
+    <a href="#story">About</a>
+    <a href="#cutting">In-store services</a>
     <a href="#branches">Branches</a>
-    <a href="#story">About us</a>
+    <a href="#brands">Brands</a>
+    <a href="#departments">Departments</a>
   </nav>
 </header>
 
@@ -509,14 +516,14 @@ p{margin:0}
   <div class="wrap">
     <div class="head rv">
       <h2 id="dept-h">Shop by department</h2>
-      <p><span class="num">9,572</span> products with live prices, all on the online store.</p>
+      <p><span class="num">9,572</span> products on the online store.</p>
     </div>
     <div class="dept">
       <a class="card card-hw rv" href="https://mrbuild-online.co.za/?product_cat=domestic-hardware" target="_blank" rel="noopener">
         <span class="ph" style="background-image:url(img/hardware.jpg)"></span>
         <span class="count num">5,643 products</span>
         <h3>Hardware</h3>
-        <p>Cupboard handles, hinges, locks, safety wear, hand and power tools. Our biggest department by far.</p>
+        <p>Cupboard handles, hinges, locks, safety wear, hand and power tools. This is the big aisle.</p>
         <span class="go">Shop hardware <span aria-hidden="true">→</span></span>
       </a>
       <a class="card rv" href="https://mrbuild-online.co.za/?product_cat=plumbing" target="_blank" rel="noopener">
@@ -637,7 +644,7 @@ p{margin:0}
     <div class="foot-cta">
       <div>
         <h2>Order online. Collect in Limpopo.</h2>
-        <p>Everything above is on mrbuild-online.co.za. Collection only, no delivery.</p>
+        <p>Order on mrbuild-online.co.za. Collect at your branch. Collection only, no delivery.</p>
       </div>
       <a class="btn btn-yellow" href="https://mrbuild-online.co.za" target="_blank" rel="noopener">Shop Mr Build Online <span class="arr" aria-hidden="true">→</span></a>
     </div>
@@ -680,6 +687,11 @@ p{margin:0}
   btn.addEventListener('click', function(){ setMenu(btn.getAttribute('aria-expanded') !== 'true'); });
   drawer.addEventListener('click', function(e){ if(e.target.closest('a')) setMenu(false); });
   document.addEventListener('keydown', function(e){ if(e.key === 'Escape') setMenu(false); });
+  document.addEventListener('click', function(e){
+    if(btn.getAttribute('aria-expanded') !== 'true') return;
+    if(drawer.contains(e.target) || btn.contains(e.target)) return;
+    setMenu(false);
+  });
 
   // Scroll reveal: only hide what starts below the fold, so the first frame is complete.
   var items = [].slice.call(document.querySelectorAll('.rv'));
