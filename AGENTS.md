@@ -5,82 +5,32 @@ Read this file before you change anything. `docs/04-handoff.md` and `docs/01-res
 ## What this is
 This is a concept company-profile landing page for **Mr Build**, a building supplies and hardware chain in Limpopo, South Africa. The page tells people who the company is and sends shoppers to the online store, **https://mrbuild-online.co.za**. It does not sell anything itself.
 
-- It is a static multi-page site with no build step:
+- It is a static multi-page site with no build step at runtime:
   - `public/index.html` (home), `services.html`, `branches.html`, `about.html`, `contact.html`
-  - `public/css/site.css`: all styles, shared by every page
-  - `public/js/site.js`: all behaviour, shared by every page. Pages must work without it (no content depends on JS).
-  - Photos and the mascot are in `public/img/`.
-- The nav, concept strip and footer are copied into all 5 pages. Change all 5 when you change one. Set `aria-current="page"` on the current page's nav and drawer links.
-- The approved design is direction "A1 · Yard Bold". Full-page reference renders are in `docs/reference/A1-desktop-final.jpg` and `docs/reference/A1-mobile.jpg`.
-- The source design lives in the Figcraft file `mrbuild.figcraft`, which stays with the designer and is not in this repo.
+  - `public/css/site.css`: all styles. `public/js/site.js`: all behaviour. Pages must work without JS.
+- **The HTML is generated.** Edit `tools/build.py`, then run `python3 tools/build.py public`. Do not hand-edit the pages; the next build overwrites them. Branch data (`BRANCHES`) and departments (`DEPTS`) live at the top of that file.
+- Design v2 (Nov 2026) follows the client's feedback: bigger logo, Buddy everywhere, fewer words, brand logos as graphics, cartoon look, a store map, and the store-sign frame.
+- The A1 renders in `docs/reference/` show the old v1 look and are kept only for history.
 
 ## Hard rules
-1. **Keep the client's logo and colours.** Do not restyle the brand.
-2. **No AI-generated images.** Use Pexels or other free-licence photos, or the client's own photos. All photos are placeholders until the client sends real ones.
+1. **Keep the client's logo and colours.** Logos are `img/logo-red.svg` and `img/logo-white.svg`, taken from mrbuild.co.za.
+2. **No AI-generated images.** Use the client's own photos (`img/store-*.jpg`) or free-licence photos.
 3. **Collection only, no delivery.** Never write copy that offers delivery.
-4. Use "**38 years**" for the company's age. The source is the client's Oct 2026 flyer (see `docs/01-research-brief.md`).
-5. Keep the yellow "Design concept" strip at the top until the client approves the page.
-6. Watch for AI-looking copy and design after every change:
-   - no filler words ("seamless", "elevate", "one-stop shop")
-   - no em-dash asides
-   - no emoji section markers
-   - no "01 / 02 / 03" numbering on content that isn't a real sequence
-   - no generic gradient heroes
-   Write plainly, the way staff at a Limpopo hardware store would talk.
-7. **Do not describe The Builder as a sister brand, subsidiary or partner until the client confirms the relationship.** Only say its branches are collection points for online orders.
+4. Use "**38 years**" for the company's age. The source is the client's Oct 2026 flyer.
+5. Keep the black "Design concept" strip at the top until the client approves the page.
+6. **Few words.** The client asked for more graphics and fewer words. Headlines of 2-4 words, one short line under them. No filler, no em dashes, no emoji.
+7. **Do not describe The Builder as a sister brand, subsidiary or partner until the client confirms.** Only call its branches collection points.
 
-## Brand tokens (already in `:root`)
-| Token | Hex | Use |
-|---|---|---|
-| `--red` | #D9232A | Brand red: fact strip, story band, nav button, phone numbers |
-| `--yellow` | #F3DD27 | Brand yellow: main CTAs, highlights, the Electrical card |
-| `--ink` | #1A1919 | Text, dark bands |
-| `--ink-2` | #111010 | Footer |
-| `--cream` | #F6F3EC | Page background |
-| `--paper` | #FFFDF6 | Cutting-list slip |
-| greys | #4A4744 #6B6762 #A8A39C #D9D6D0 #E8E5DF | Secondary text, rules |
-
-**Type** (Google Fonts):
-- Barlow Condensed 700/800/900 for headings, always uppercase.
-- Barlow 400–700 for body text.
-- Aleo 700 for the story heading only.
-
-The page commits to one light look on purpose. Do not add dark mode.
-
-## Pages
-- **Home:** see the section order below. One main button (the yellow shop CTA); "Find your branch" is a text link.
-- **Services:** hero, jump bar, 6 product cards linking to store categories, the in-store band (cutting & edging, wrapped doors, 3 real steps, cutting slip), brands wall.
-- **Branches:** district filter chips, one card per branch with a live open/closed pill (SA time, from `site.js`), hours, Call / Email / Directions, then the collect box. JSON-LD has a `HardwareStore` per branch.
-- **About:** red hero with the 38 count-up, Meet Mr Build (client mascot), What we do, Where we trade, brands wall.
-- **Contact:** form (name, branch, phone, email, topic, message; phone or email required) and head office / branch phone boxes.
-
-## Home page order
-Each section's `id` is in brackets.
-
-1. Concept strip
-2. Sticky nav (`#top`): logo, links and the red "Shop online" button. On mobile, a hamburger opens a drawer.
-3. Hero: kicker listing the towns, "BUILDING LIMPOPO FOR 38 YEARS.", sub-line, a yellow shop CTA and a "Find your branch" text link to branches.html.
-4. Red fact strip with 4 facts.
-5. Shop by department (`#departments`), a mosaic:
-   - Hardware, the big card, 5,643 products
-   - Plumbing, 1,235
-   - Paint, 962
-   - Electrical, 819 (the yellow card)
-   - Wood & board, 621
-   - Building materials, 292, as a full-width strip with "See all 9,572 products"
-   - The counts were read from the store on 20 Nov 2026.
-6. Cut to size while you wait (`#cutting`): ink band with a tilted paper cutting-list slip.
-7. Six branches, two collection points (`#branches`), with the opening hours:
-   - Vhembe (4 Mr Build branches, 1 The Builder collection point) and Mopani (2 Mr Build branches, 1 The Builder collection point)
-   - Phone numbers right-aligned
-   - Yellow "Ordered online?" collect box
-8. Story (`#story`, red band): a big "38", "From Musina to Tzaneen.", and the brands list (`#brands`).
-9. Footer: "Order online. Collect in Limpopo." CTA, then the logo and the Shop / Company / Follow columns.
-
-## Breakpoints
-- **980px and below:** the nav links collapse into the hamburger; the department mosaic becomes 2 columns with Hardware full width; the cutting, branches and story sections stack.
-- **640px and below:** buttons go full width; the fact strip becomes a 2×2 grid; type gets smaller.
-- Every band uses `.band` with the gutter `max(16px, env(safe-area-inset-*))`. Keep it.
+## Design system (v2)
+- **Colours:** only 4. `--red` #D9232A, `--yellow` #F3DD27, `--black` #111, `--white` #fff. No greys and no cream.
+- **Type:** Lilita One (display, cartoon headings) and Barlow 500/600/700 (body).
+- **Cartoon look:** 3px black outlines, hard offset shadows (`--sh`), dot halftone backgrounds (`.dots`), starburst stickers (`.burst`), speech bubbles (`.bubble`, `.l`, `.b`).
+- **The sign frame ("slanted Flintstone"):** the client meant the steel sign structure on their stores: red posts with slanted crossbeams sticking out past the board. It is drawn in `img/frame.svg` and used by `.post`: a white `.board` on the frame, with Buddy beside it. Heading tags `.beam` are slanted bars (rotate -2.5deg). Section edges `.slant` and `.slant-r` are cut on an angle with `clip-path`.
+- **Buddy** (`img/buddy.svg`) appears in every hero, How it works, the footer CTA, and as the map pins.
+- **Department icons** are the mrbuild.co.za SVGs in `img/icons/`, drawn with CSS `mask-image` so they take any colour. `doors.svg` was drawn to match. Masks need http, so test with a local server, not file://.
+- **Department tiles** (`.pylon`) copy the red pylon sign at the stores.
+- **Brands** are logo tiles from `img/brands/`. White backgrounds were removed with a flood fill.
+- **Map:** Leaflet 1.9.4 (cdnjs) with OpenStreetMap tiles. Store data comes from the `#store-data` JSON block. The store list next to the map works without JS. Keep the OSM attribution.
 
 ## Motion rules (Emil Kowalski's design-engineering principles)
 - **Easing:** use the custom curves only: `--ease-out` `cubic-bezier(0.23,1,0.32,1)`, `--ease-in-out`, `--ease-drawer`. Never use `ease-in` on UI.
@@ -88,29 +38,29 @@ Each section's `id` is in brackets.
 - **Pressable things:** add `:active { transform: scale(.97) }` at 160ms ease-out (cards use .985).
 - **Hover:** wrap hover effects in `@media (hover:hover) and (pointer:fine)`.
 - **Durations:** UI animation stays under 300ms. Exits are faster than entrances (the drawer opens in 280ms and closes in 180ms).
-- **Hero load sequence:** this is the one orchestrated moment. Headline lines rise out of `overflow:hidden` masks, staggered 70ms, then the sub-line and CTAs fade up, staggered 60ms. The photo settles from scale 1.07.
-- **Scroll reveal:** only elements *below the first screen at load* get `.pending`, so the page is complete without scrolling. Department cards stagger 60ms.
-- **Cutting slip:** drops in with a slight overshoot, then its lines stagger in 70ms apart.
+- **Scroll reveal:** `.rv` elements below the first screen fade up. Grid items stagger 60ms, capped at 8.
+- **Buddy wave:** one short wave on Buddy in heroes. Off under reduced motion.
 - **"38" count-up:** runs once, from 1, over about 1.1s.
 - **Never animate from `scale(0)`.** Do not add animation to anything used often or triggered from the keyboard.
 - **Reduced motion:** `prefers-reduced-motion` removes movement but keeps short fades. Keep that block up to date.
 
 ## Open items / TODO
-- [ ] **Contact form backend.** The form has `data-concept="true"`, so it shows the sent state without sending. To go live: create a Formspree (or similar) form, put its URL in `action`, and remove `data-concept`. Then send a test message from a phone.
-- [ ] Confirm per-branch hours. All branches currently use the same hours (`site.js` `branchStatus()` and the JSON-LD assume this).
-- [ ] Wrapped doors: get colours and lead times from the client.
-- [ ] Swap `img/logo.png` (raster, 400×133) for the vector logo when the client sends it.
-- [ ] Replace the Pexels photos (`hero`, `hardware`, `plumbing`, `paint`, `wood`, `building`) with the client's own photos.
-- [ ] Confirm the branch phone numbers, addresses and hours with the client.
-- [ ] Ask client how Mr Build and The Builder are related.
-- [ ] Re-check the product counts before launch, since they drift.
-- [ ] When the real domain is known, replace `https://vedalkendev.github.io/mrbuild-landing/` in every canonical, `og:` and JSON-LD URL.
+- [ ] **9th store.** The client says there are 9. Only 8 are known, so a "Store 9 / Details coming soon" slot is shown. Get the name, address, phone, hours and map location, add it to `BRANCHES` in `tools/build.py`, and remove the slot.
+- [ ] Is "Mr Build Wood" (signage in the client's drone photos) the 9th store or a department?
+- [ ] Which branches are in `store-yard.jpg`, `store-front.jpg` and `store-pylon.jpg`? Alt text stays generic until we know.
+- [ ] Check each branch's map pin with the client. Some are town-level, not the exact site.
+- [ ] **Contact form backend.** The form has `data-concept="true"` and a `REPLACE_ME` Formspree URL. Wire it up and remove `data-concept`.
+- [ ] Confirm per-branch hours (all branches use the same hours now).
+- [ ] Wrapped doors: colours and lead times.
+- [ ] Ask the client how Mr Build and The Builder are related.
+- [ ] Re-check product counts before launch.
+- [ ] When the real domain is known, change `BASE` in `tools/build.py`.
 
 ## Run locally
 ```
-npx serve public
+python3 -m http.server 8765 -d public
 ```
-Opening `public/index.html` directly in a browser also works.
+Use a server: the icon masks do not load from file://.
 
 ## Hosting: GitHub Pages
 Live at https://vedalkendev.github.io/mrbuild-landing/
@@ -124,4 +74,4 @@ git branch -D gh-pages-tmp
 Keep `public/.nojekyll`. Never ask the user to paste a token into chat; if `gh auth status` fails, the user runs `gh auth login` in the browser.
 
 All asset paths are relative (`img/...`, `css/...`), so the site works under the `/mrbuild-landing/` sub-path. Keep them relative.
-The site is public, so the yellow "Design concept" strip must stay until the client signs off.
+The site is public, so the "Design concept" strip must stay until the client signs off.

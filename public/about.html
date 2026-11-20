@@ -3,18 +3,19 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-<title>About us | Mr Build Limpopo</title>
-<meta name="description" content="Mr Build has supplied builders, contractors and homeowners in Limpopo for 38 years. Retail and wholesale, board cutting and door wrapping, six branches in Vhembe and Mopani.">
+<title>About Mr Build | Your Building Buddy</title>
+<meta name="description" content="Mr Build has supplied builders and homeowners in Limpopo for 38 years. Meet Buddy, see our stores and the brands we stock.">
 <meta name="theme-color" content="#D9232A">
 <link rel="canonical" href="https://vedalkendev.github.io/mrbuild-landing/about.html">
+<link rel="icon" href="img/buddy.svg" type="image/svg+xml">
 <meta property="og:type" content="website">
 <meta property="og:locale" content="en_ZA">
 <meta property="og:site_name" content="Mr Build">
-<meta property="og:title" content="About us | Mr Build Limpopo">
-<meta property="og:description" content="Mr Build has supplied builders, contractors and homeowners in Limpopo for 38 years. Retail and wholesale, board cutting and door wrapping, six branches in Vhembe and Mopani.">
+<meta property="og:title" content="About Mr Build | Your Building Buddy">
+<meta property="og:description" content="Mr Build has supplied builders and homeowners in Limpopo for 38 years. Meet Buddy, see our stores and the brands we stock.">
 <meta property="og:url" content="https://vedalkendev.github.io/mrbuild-landing/about.html">
-<meta property="og:image" content="https://vedalkendev.github.io/mrbuild-landing/img/mascot.png">
-<meta property="og:image:alt" content="Mr Build mascot">
+<meta property="og:image" content="https://vedalkendev.github.io/mrbuild-landing/img/store-pylon.jpg">
+<meta property="og:image:alt" content="A Mr Build store and its pylon sign">
 <meta name="twitter:card" content="summary_large_image">
 <script type="application/ld+json">
 {
@@ -26,7 +27,7 @@
       "name": "Mr Build",
       "alternateName": "Your Building Buddy",
       "url": "https://vedalkendev.github.io/mrbuild-landing/",
-      "logo": "https://vedalkendev.github.io/mrbuild-landing/img/logo.png",
+      "logo": "https://vedalkendev.github.io/mrbuild-landing/img/logo-red.svg",
       "email": "info@mrbuild.co.za",
       "telephone": "+27150040560",
       "sameAs": [
@@ -48,116 +49,130 @@
 </script>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Aleo:wght@700&family=Barlow+Condensed:wght@700;800;900&family=Barlow:wght@400;500;600;700&display=swap">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Lilita+One&family=Barlow:wght@500;600;700&display=swap">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.min.css" crossorigin="anonymous" referrerpolicy="no-referrer">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.min.js" defer crossorigin="anonymous" referrerpolicy="no-referrer"></script>
 <link rel="stylesheet" href="css/site.css">
 <script src="js/site.js" defer></script>
 </head>
 <body>
-<div class="concept band"><div class="wrap">Design concept for Mr Build. Not the official website. To shop for real, go to mrbuild-online.co.za.</div></div>
-<header class="nav band" id="top">
+<div class="concept">Design concept for Mr Build. Not the official website.</div>
+<header class="nav" id="top">
   <div class="wrap">
-    <a class="logo" href="index.html" aria-label="Mr Build home"><img src="img/logo.png" alt="Mr Build, Your Building Buddy" width="400" height="133"></a>
+    <a class="logo" href="index.html" aria-label="Mr Build home"><img src="img/logo-red.svg" alt="Mr Build" width="257" height="72"></a>
     <ul class="nav-links">
-      <li><a href="about.html" aria-current="page">About</a></li>
       <li><a href="services.html">Services</a></li>
       <li><a href="branches.html">Branches</a></li>
+      <li><a href="about.html" aria-current="page">About</a></li>
       <li><a href="contact.html">Contact</a></li>
     </ul>
-    <a class="btn btn-red" href="https://mrbuild-online.co.za" target="_blank" rel="noopener">Shop online</a>
+    <a class="btn btn-y btn-sm btn-shop" href="https://mrbuild-online.co.za" target="_blank" rel="noopener">Shop online</a>
     <button class="menu-btn" id="menu-btn" aria-label="Menu" aria-expanded="false" aria-controls="drawer"><span></span><span></span><span></span></button>
   </div>
   <nav class="drawer" id="drawer" aria-label="Mobile">
     <a href="index.html">Home</a>
-    <a href="about.html" aria-current="page">About</a>
     <a href="services.html">Services</a>
     <a href="branches.html">Branches</a>
+    <a href="about.html" aria-current="page">About</a>
     <a href="contact.html">Contact</a>
+    <a class="shop" href="https://mrbuild-online.co.za" target="_blank" rel="noopener">Shop online →</a>
   </nav>
 </header>
 <main>
-<section class="phero red about-hero band" aria-labelledby="ph-h">
+<section class="phero dots" aria-label="Page header">
   <div class="wrap">
-    <div class="yrs"><span class="n num" data-count="38" aria-label="38">38</span></div>
-    <div class="copy">
-      <p class="label kicker">Years in Limpopo</p>
-      <h1 id="ph-h"><span class="line"><span>Your building</span></span><span class="line"><span class="yel">buddy.</span></span></h1>
-      <p class="sub" style="color:var(--white)">From Musina in the north to Tzaneen in the east, homeowners, builders and contractors shop the same counters.</p>
+    <div class="post">
+      <img class="frame" src="img/frame.svg" alt="" aria-hidden="true">
+      <div class="board"><h1><span class="num" data-count="38">38</span> <span class="k">years</span></h1></div>
+      
+      <img class="buddy" src="img/buddy.svg" alt="Buddy, the Mr Build mascot" width="92" height="100">
     </div>
+    <div class="side"><p class="lede">Limpopo's<br><span class="y">building buddy.</span></p></div>
   </div>
 </section>
-
-<section class="sec band" aria-labelledby="meet-h">
-  <div class="wrap meet">
-    <div class="rv"><img src="img/mascot.png" alt="The Mr Build mascot in a yellow hard hat and overalls" width="377" height="450"></div>
-    <div class="rv" style="--d:80ms">
-      <h2 id="meet-h">Meet Mr Build</h2>
-      <p>The man in the yellow hard hat is our building buddy. He stands for the people at the counter: they know the stock, they know the trade, and they will tell you straight what you need and what you don't.</p>
-      <p>We sell retail and wholesale from the same counter, so a homeowner fixing a tap and a contractor buying a truckload of cement get the same help.</p>
-    </div>
-  </div>
-</section>
-
-<section class="sec band" style="padding-top:0" aria-labelledby="ww-h">
+<section class="meet sec slant-r" aria-labelledby="meet-h" style="background:var(--white)">
   <div class="wrap">
-    <div class="head rv"><h2 id="ww-h">What we do</h2><p>The short version.</p></div>
-    <div class="whatwe">
-      <div class="rv"><h3>Retail and wholesale</h3><p>One counter for homeowners, builders and contractors. Ask about prices on bigger orders.</p></div>
-      <div class="rv"><h3>Cut and edged boards</h3><p>Melamine and Supawood cut to your list and edged in the branch.</p></div>
-      <div class="rv"><h3>Wrapped doors</h3><p>Cupboard and passage doors wrapped to order.</p></div>
-      <div class="rv"><h3>BILHAM décor</h3><p>Our own décor range, found at Mr Build.</p></div>
+    <div class="bimg rv"><img src="img/buddy.svg" alt="Buddy in his yellow hard hat and overalls" width="92" height="100" loading="lazy"></div>
+    <div class="rv">
+      <p class="bubble l" style="display:inline-block;margin-bottom:22px">Howzit! I'm Buddy.</p>
+      <h2 id="meet-h">Your <span class="r">building</span> buddy</h2>
+      <p>Retail and wholesale at one counter. Homeowner or contractor, same help.</p>
     </div>
-    <p class="sec-more rv"><a class="tlink" href="services.html"><span>See all services</span> <span class="arr" aria-hidden="true">→</span></a></p>
   </div>
 </section>
 
-<section class="cut sec band" aria-labelledby="reach-h">
-  <div class="wrap" style="display:block">
-    <div class="head rv"><h2 id="reach-h">Where we trade</h2><p style="color:var(--g4)">Two districts, eight places to collect.</p></div>
-    <div class="reach">
-      <div class="rv"><h3>Vhembe</h3><ul><li>Louis Trichardt</li><li>Musina</li><li>Sibasa</li><li>Thohoyandou</li><li>Thohoyandou <small>The Builder, collection point</small></li></ul></div>
-      <div class="rv" style="--d:80ms"><h3>Mopani</h3><ul><li>Tzaneen</li><li>Giyani</li><li>Giyani <small>The Builder, collection point</small></li></ul></div>
-    </div>
-    <p class="sec-more rv"><a class="tlink" href="branches.html" style="color:var(--yellow)"><span>Hours, phone numbers and directions</span> <span class="arr" aria-hidden="true">→</span></a></p>
-  </div>
-</section>
-
-<section class="sec band" aria-labelledby="b-h">
+<section class="sec bg-r dots slant" aria-labelledby="w-h">
   <div class="wrap">
-    <div class="head rv"><h2 id="b-h">On our shelves</h2><p>Some of the brands you will find in store.</p></div>
-    <ul class="wall rv">
-      <li>Dulux</li><li>Tork Craft</li><li>AfriSam</li><li>Alcolin</li><li>PG Bison</li><li>Afrimat</li><li>Sonae Arauco</li><li>Nutec</li><li>JoJo</li><li>Yale</li><li>Bosch</li><li>Ariston</li><li>Ingco</li><li>Lasher</li><li>Harvey Roofing</li><li>Eureka</li>
+    <div class="shead rv"><h2 class="beam y" id="w-h">What we do</h2></div>
+    <ul class="pylon">
+      <li class="rv y"><a href="services.html"><span class="ibox"><span class="ic" style="-webkit-mask-image:url(img/icons/building.svg);mask-image:url(img/icons/building.svg)" aria-hidden="true"></span></span><h3>Retail &amp; wholesale</h3><span class="cnt">One counter</span></a></li>
+      <li class="rv y"><a href="services.html#cutting"><span class="ibox"><span class="ic" style="-webkit-mask-image:url(img/icons/cutting.svg);mask-image:url(img/icons/cutting.svg)" aria-hidden="true"></span></span><h3>Cutting &amp; edging</h3><span class="cnt">In store</span></a></li>
+      <li class="rv y"><a href="services.html#doors"><span class="ibox"><span class="ic" style="-webkit-mask-image:url(img/icons/doors.svg);mask-image:url(img/icons/doors.svg)" aria-hidden="true"></span></span><h3>Wrapped doors</h3><span class="cnt">To order</span></a></li>
+      <li class="rv y"><a href="services.html"><span class="ibox"><span class="ic" style="-webkit-mask-image:url(img/icons/paint.svg);mask-image:url(img/icons/paint.svg)" aria-hidden="true"></span></span><h3>BILHAM décor</h3><span class="cnt">Our own range</span></a></li>
     </ul>
   </div>
 </section>
-</main>
-<footer class="foot band">
+
+<section class="sec slant-r" aria-labelledby="y-h" style="background:var(--white)">
   <div class="wrap">
-    <div class="foot-cta">
-      <div>
-        <h2>Order online. Collect in Limpopo.</h2>
-        <p>9,572 products on mrbuild-online.co.za. Collection only, no delivery.</p>
-      </div>
-      <a class="btn btn-yellow" href="https://mrbuild-online.co.za" target="_blank" rel="noopener">Shop Mr Build Online <span class="arr" aria-hidden="true">→</span></a>
+    <div class="shead rv"><h2 class="beam k" id="y-h">Our stores</h2></div>
+    <ul class="yards">
+      <li class="rv"><img src="img/store-pylon.jpg" alt="A Mr Build store with its red pylon sign, from above" loading="lazy" width="1600" height="1066"></li>
+      <li class="rv"><img src="img/store-front.jpg" alt="A Mr Build shopfront on a main road, from above" loading="lazy" width="1280" height="720"></li>
+      <li class="rv"><img src="img/store-yard.jpg" alt="A Mr Build yard stacked with bricks and blocks, from above" loading="lazy" width="1280" height="720"></li>
+    </ul>
+  </div>
+</section>
+
+<section class="sec bg-y dots-k slant" aria-labelledby="s-h">
+  <div class="wrap">
+    <div class="shead rv"><h2 class="beam" id="s-h">Where we trade</h2><a class="more" href="branches.html">Hours &amp; numbers →</a></div>
+    <div class="mapwrap">
+      <div class="map" id="map" role="region" aria-label="Map of Mr Build stores"><p class="nojs">The map needs JavaScript. All stores are listed here.</p></div>
+      <ul class="stores">
+        <li class="mb"><button type="button" data-store="tzaneen" aria-pressed="false"><span class="pinmini"><img src="img/buddy.svg" alt=""></span><span><strong>Tzaneen</strong><small>Head office · <a href="tel:+27150040560">015 004 0560</a></small></span></button></li>
+<li class="mb"><button type="button" data-store="louis-trichardt" aria-pressed="false"><span class="pinmini"><img src="img/buddy.svg" alt=""></span><span><strong>Louis Trichardt</strong><small>Mr Build · <a href="tel:+27150040168">015 004 0168</a></small></span></button></li>
+<li class="mb"><button type="button" data-store="musina" aria-pressed="false"><span class="pinmini"><img src="img/buddy.svg" alt=""></span><span><strong>Musina</strong><small>Mr Build · <a href="tel:+27150041031">015 004 1031</a></small></span></button></li>
+<li class="mb"><button type="button" data-store="giyani" aria-pressed="false"><span class="pinmini"><img src="img/buddy.svg" alt=""></span><span><strong>Giyani</strong><small>Mr Build · <a href="tel:+27158123786">015 812 3786</a></small></span></button></li>
+<li class="mb"><button type="button" data-store="sibasa" aria-pressed="false"><span class="pinmini"><img src="img/buddy.svg" alt=""></span><span><strong>Sibasa</strong><small>Mr Build · <a href="tel:+27159633856">015 963 3856</a></small></span></button></li>
+<li class="mb"><button type="button" data-store="thohoyandou" aria-pressed="false"><span class="pinmini"><img src="img/buddy.svg" alt=""></span><span><strong>Thohoyandou</strong><small>Mr Build · <a href="tel:+27159620444">015 962 0444</a></small></span></button></li>
+<li class="tb"><button type="button" data-store="the-builder-thohoyandou" aria-pressed="false"><span class="pinmini"><img src="img/buddy.svg" alt=""></span><span><strong>The Builder Thohoyandou</strong><small>Collection point · <a href="tel:+27159625545">015 962 5545</a></small></span></button></li>
+<li class="tb"><button type="button" data-store="the-builder-giyani" aria-pressed="false"><span class="pinmini"><img src="img/buddy.svg" alt=""></span><span><strong>The Builder Giyani</strong><small>Collection point · <a href="tel:+27150040561">015 004 0561</a></small></span></button></li>
+<li><div class="slot"><span class="pinmini">9</span><span><strong>Store 9</strong><small>Details coming soon</small></span></div></li>
+      </ul>
     </div>
-    <div class="foot-grid">
+    <script type="application/json" id="store-data">[{"id": "tzaneen", "n": "Mr Build Tzaneen", "k": "mb", "a": "Cnr Danie Joubert &amp; Claude Wheatley St, Tzaneen", "t": "015 004 0560", "e": "+27150040560", "d": "https://www.google.com/maps/dir/?api=1&destination=-23.8357,30.1516", "ll": [-23.8357, 30.1516]}, {"id": "louis-trichardt", "n": "Mr Build Louis Trichardt", "k": "mb", "a": "Cnr Rissik &amp; Grobler Straat, Louis Trichardt", "t": "015 004 0168", "e": "+27150040168", "d": "https://www.google.com/maps/dir/?api=1&destination=-23.0481,29.9046", "ll": [-23.0481, 29.9046]}, {"id": "musina", "n": "Mr Build Musina", "k": "mb", "a": "6 Pat Harrison Rd, Musina", "t": "015 004 1031", "e": "+27150041031", "d": "https://www.google.com/maps/dir/?api=1&destination=-22.3393,30.0424", "ll": [-22.3393, 30.0424]}, {"id": "giyani", "n": "Mr Build Giyani", "k": "mb", "a": "Giyani-BA, Giyani", "t": "015 812 3786", "e": "+27158123786", "d": "https://www.google.com/maps/dir/?api=1&destination=-23.3144,30.7168", "ll": [-23.3144, 30.7168]}, {"id": "sibasa", "n": "Mr Build Sibasa", "k": "mb", "a": "204 Makhado Rd, Sibasa", "t": "015 963 3856", "e": "+27159633856", "d": "https://www.google.com/maps/dir/?api=1&destination=-22.9308,30.4632", "ll": [-22.9308, 30.4632]}, {"id": "thohoyandou", "n": "Mr Build Thohoyandou", "k": "mb", "a": "90/91 B.A, next to Thulamela Municipality, Thohoyandou", "t": "015 962 0444", "e": "+27159620444", "d": "https://www.google.com/maps/dir/?api=1&destination=-22.9504,30.4785", "ll": [-22.9504, 30.4785]}, {"id": "the-builder-thohoyandou", "n": "The Builder Thohoyandou", "k": "tb", "a": "Thohoyandou", "t": "015 962 5545", "e": "+27159625545", "d": "https://www.google.com/maps/dir/?api=1&destination=-22.9872,30.4677", "ll": [-22.9872, 30.4677]}, {"id": "the-builder-giyani", "n": "The Builder Giyani", "k": "tb", "a": "6 First Rd, Giyani-BA, Giyani", "t": "015 004 0561", "e": "+27150040561", "d": "https://www.google.com/maps/dir/?api=1&destination=-23.313,30.7133", "ll": [-23.313, 30.7133]}]</script>
+  </div>
+</section>
+
+<section class="sec slant-r" aria-labelledby="b-h" style="background:var(--white)">
+  <div class="wrap">
+    <div class="shead rv"><h2 class="beam y" id="b-h">On our shelves</h2></div>
+    <ul class="brands"><li class="rv"><img src="img/brands/bosch.png" alt="Bosch" loading="lazy"></li><li class="rv"><img src="img/brands/makita.png" alt="Makita" loading="lazy"></li><li class="rv"><img src="img/brands/dulux.png" alt="Dulux" loading="lazy"></li><li class="rv"><img src="img/brands/jojo.png" alt="JoJo" loading="lazy"></li><li class="rv"><img src="img/brands/tork_craft.png" alt="Tork Craft" loading="lazy"></li><li class="rv"><img src="img/brands/pg_bison.png" alt="PG Bison" loading="lazy"></li><li class="rv"><img src="img/brands/nutec.png" alt="Nutec" loading="lazy"></li><li class="rv"><img src="img/brands/lasher.png" alt="Lasher" loading="lazy"></li><li class="rv"><img src="img/brands/harvey.png" alt="Harvey Roofing" loading="lazy"></li><li class="rv"><img src="img/brands/eureka.png" alt="Eureka" loading="lazy"></li><li class="rv"><img src="img/brands/bostik.png" alt="Bostik" loading="lazy"></li><li class="rv"><img src="img/brands/glue_devil.png" alt="Glue Devil" loading="lazy"></li><li class="rv"><img src="img/brands/fortknox.png" alt="Fort Knox" loading="lazy"></li><li class="rv"><img src="img/brands/hamiltons.png" alt="Hamilton's" loading="lazy"></li><li class="rv"><img src="img/brands/academy.png" alt="Academy Brushware" loading="lazy"></li><li class="rv"><img src="img/brands/cornice_maker.png" alt="Cornice Maker" loading="lazy"></li><li class="rv"><img src="img/brands/sunridge.png" alt="Sunridge" loading="lazy"></li><li class="rv"><img src="img/brands/waco.png" alt="Waco" loading="lazy"></li><li class="rv"><img src="img/brands/xpanda.png" alt="Xpanda" loading="lazy"></li><li class="rv"><img src="img/brands/matus.png" alt="Matus" loading="lazy"></li><li class="rv"><img src="img/brands/ruwag.png" alt="Ruwag" loading="lazy"></li><li class="rv"><img src="img/brands/pbes.png" alt="PBES" loading="lazy"></li><li class="rv"><img src="img/brands/national_edging.png" alt="National Edging" loading="lazy"></li></ul>
+  </div>
+</section>
+</main>
+<section class="cta sec bg-y dots-k slant" aria-labelledby="cta-h">
+  <div class="wrap">
+    <div class="row">
       <div>
-        <a class="logo" href="index.html" aria-label="Mr Build home"><img src="img/logo.png" alt="Mr Build" width="400" height="133"></a>
-        <p class="blurb">Building supplies and hardware across Vhembe and Mopani, Limpopo.</p>
+        <h2 id="cta-h">Order online.<br><span class="r">Collect in store.</span></h2>
+        <p>9,572 products. No delivery, collection only.</p>
+        <div class="ctas"><a class="btn btn-r" href="https://mrbuild-online.co.za" target="_blank" rel="noopener">Shop now →</a><a class="btn" href="branches.html">Find a store</a></div>
       </div>
-      <div><p class="label">Shop</p><ul>
-        <li><a href="https://mrbuild-online.co.za" target="_blank" rel="noopener">Online store</a></li>
-        <li><a href="https://mrbuild-online.co.za/?product_cat=domestic-hardware" target="_blank" rel="noopener">Hardware</a></li>
-        <li><a href="https://mrbuild-online.co.za/?product_cat=plumbing" target="_blank" rel="noopener">Plumbing</a></li>
-        <li><a href="https://mrbuild-online.co.za/?product_cat=paint-supplies" target="_blank" rel="noopener">Paint</a></li>
-        <li><a href="https://mrbuild-online.co.za/?product_cat=electrical-supplies" target="_blank" rel="noopener">Electrical</a></li>
-        <li><a href="https://mrbuild-online.co.za/?product_cat=wood-board-suplies" target="_blank" rel="noopener">Wood &amp; board</a></li>
-        <li><a href="https://mrbuild-online.co.za/?product_cat=building-supplies" target="_blank" rel="noopener">Building materials</a></li></ul></div>
-      <div><p class="label">Company</p><ul>
-        <li><a href="about.html">About</a></li><li><a href="services.html">Services</a></li><li><a href="branches.html">Branches</a></li><li><a href="contact.html">Contact</a></li></ul></div>
-      <div><p class="label">Follow</p><ul>
-        <li><a href="https://www.instagram.com/mrbuild_sa/" target="_blank" rel="noopener">Instagram @mrbuild_sa</a></li><li><a href="https://www.facebook.com/people/Mr-Build/61551736583171/" target="_blank" rel="noopener">Facebook</a></li><li><a href="mailto:info@mrbuild.co.za">info@mrbuild.co.za</a></li></ul></div>
+      <img src="img/buddy.svg" alt="" width="92" height="100" loading="lazy">
     </div>
-    <p class="legal">© 2026 Mr Build. Concept site. Photos: Pexels (placeholder). Product counts from mrbuild-online.co.za, 20 Nov 2026.</p>
+  </div>
+</section>
+<footer class="foot sec slant-r">
+  <div class="wrap">
+    <div class="grid">
+      <div><a href="index.html" aria-label="Mr Build home"><img class="flogo" src="img/logo-white.svg" alt="Mr Build, Your Building Buddy" width="284" height="78" loading="lazy"></a></div>
+      <div><p class="label">Shop</p><ul><li><a href="https://mrbuild-online.co.za" target="_blank" rel="noopener">Online store</a></li><li><a href="services.html">Departments</a></li><li><a href="services.html#cutting">Cutting &amp; edging</a></li></ul></div>
+      <div><p class="label">Visit</p><ul><li><a href="branches.html">Stores &amp; hours</a></li><li><a href="about.html">About Buddy</a></li><li><a href="contact.html">Contact</a></li></ul></div>
+      <div><p class="label">Follow</p><ul><li><a href="https://www.instagram.com/mrbuild_sa/" target="_blank" rel="noopener">Instagram</a></li><li><a href="https://www.facebook.com/people/Mr-Build/61551736583171/" target="_blank" rel="noopener">Facebook</a></li><li><a href="mailto:info@mrbuild.co.za">info@mrbuild.co.za</a></li></ul></div>
+    </div>
+    <p class="legal">© 2026 Mr Build. Concept site. Store photos supplied by Mr Build. Map © OpenStreetMap contributors.</p>
   </div>
 </footer>
 </body>
