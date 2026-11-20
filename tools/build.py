@@ -8,13 +8,14 @@ LEAFLET = "https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/"
 # slug, name, kind, district, street, town, postcode, tel, email, lat, lng
 BRANCHES = [
   ("tzaneen","Tzaneen","mb","mopani","Cnr Danie Joubert & Claude Wheatley St","Tzaneen","0850","015 004 0560","tzaneen@mrbuild.co.za",-23.8357,30.1516),
-  ("louis-trichardt","Louis Trichardt","mb","vhembe","Cnr Rissik & Grobler Straat","Louis Trichardt","0920","015 004 0168","louistrichardt@mrbuild.co.za",-23.0481,29.9046),
+  ("louis-trichardt","Louis Trichardt","mb","vhembe","6 Cnr Rissik & Grobler St","Louis Trichardt","0920","015 004 0168","louistrichardt@mrbuild.co.za",-23.0481,29.9046),
   ("musina","Musina","mb","vhembe","6 Pat Harrison Rd","Musina","0900","015 004 1031","musina@mrbuild.co.za",-22.3393,30.0424),
-  ("giyani","Giyani","mb","mopani","Giyani-BA","Giyani","0826","015 812 3786","giyani@mrbuild.co.za",-23.3144,30.7168),
+  ("giyani","Giyani","mb","mopani","92 B.A","Giyani","0826","015 812 3786","giyani@mrbuild.co.za",-23.3144,30.7168),
   ("sibasa","Sibasa","mb","vhembe","204 Makhado Rd","Sibasa","0970","015 963 3856","sibasa@mrbuild.co.za",-22.9308,30.4632),
-  ("thohoyandou","Thohoyandou","mb","vhembe","90/91 B.A, next to Thulamela Municipality","Thohoyandou","0950","015 962 0444","thohoyandou@mrbuild.co.za",-22.9504,30.4785),
-  ("the-builder-thohoyandou","Thohoyandou","tb","vhembe","","Thohoyandou","0950","015 962 5545","thohoyandou@thebuilder.co.za",-22.9872,30.4677),
-  ("the-builder-giyani","Giyani","tb","mopani","6 First Rd, Giyani-BA","Giyani","0826","015 004 0561","giyani@thebuilder.co.za",-23.313,30.7133),
+  ("thohoyandou","Thohoyandou","mb","vhembe","90/91 B.A","Thohoyandou","0950","015 962 0444","thohoyandou@mrbuild.co.za",-22.9504,30.4785),
+  ("mankweng","Mankweng","mb","capricorn","RE/22/1005, R71","Mankweng","0727","015 004 2297","",-23.8790,29.7210),
+  ("the-builder-thohoyandou","Thohoyandou","tb","vhembe","70 Mphephu St","Thohoyandou","0950","015 962 5545","thohoyandou@thebuilder.co.za",-22.9872,30.4677),
+  ("the-builder-giyani","Giyani","tb","mopani","32 B.A","Giyani","0826","015 004 0561","giyani@thebuilder.co.za",-23.313,30.7133),
 ]
 def e164(t): return "+27" + t.replace(" ","")[1:]
 def esc(s): return s.replace("&","&amp;")
@@ -159,18 +160,31 @@ def pylon(with_text=False):
     for i,(slug,name,txt,href,cnt,var) in enumerate(DEPTS):
         ext = '' if href.endswith(("#cutting","#doors")) else ' target="_blank" rel="noopener"'
         p = f"<p>{txt}</p>" if with_text else ""
-        out.append(f'''      <li class="rv {var}"><a href="{href}"{ext}><span class="ibox">{ic(slug)}</span><h3>{name}</h3>{p}<span class="cnt">{cnt}</span></a></li>''')
+        out.append(f'''      <li class="rv {var}"><a href="{href}"{ext}><span class="ph"><img src="img/dept/{slug}.jpg" alt="" loading="lazy" width="480" height="360"></span><span class="ibox">{ic(slug)}</span><h3>{name}</h3>{p}<span class="cnt">{cnt}</span></a></li>''')
     return '<ul class="pylon">\n' + "\n".join(out) + "\n    </ul>"
 
+BADGE = {'academy':'#000','bosch':'#003B6A','dulux':'#09316E','hamiltons':'#98012E','tork_craft':'#D2242A','matus':'#070809','makita':'#EE2A40'}
+
+def _stk(f, n, dup):
+    alt = '' if dup else n
+    ah = ' aria-hidden="true"' if dup else ''
+    if f in BADGE:
+        return f'<li{ah}><span class="stk badge" style="--bg:{BADGE[f]}"><img src="img/brands/{f}.png" alt="{alt}" loading="lazy"></span></li>'
+    return f'<li{ah}><span class="stk"><img src="img/brands/{f}.png" alt="{alt}" loading="lazy"></span></li>'
+
 def brands():
-    return '<ul class="brands">' + "".join(f'<li class="rv"><img src="img/brands/{f}.png" alt="{n}" loading="lazy"></li>' for f,n in BRANDS) + '</ul>'
+    rows = [BRANDS[0::2], BRANDS[1::2]]
+    out = '<div class="ticker">'
+    for i, row in enumerate(rows):
+        items = "".join(_stk(f, n, False) for f, n in row) + "".join(_stk(f, n, True) for f, n in row)
+        out += f'<div class="band{" k rev" if i else ""}"><ul class="track">{items}</ul></div>'
+    return out + '</div>'
 
 def mapblock(dark=False):
     items = []
     for b in BRANCHES:
         sub = "Collection point" if b[2]=="tb" else ("Head office" if b[0]=="tzaneen" else "Mr Build")
         items.append(f'''<li class="{b[2]}"><button type="button" data-store="{b[0]}" aria-pressed="false"><span class="pinmini"><img src="img/buddy.svg" alt=""></span><span><strong>{"The Builder " if b[2]=="tb" else ""}{b[1]}</strong><small>{sub} · <a href="tel:{e164(b[7])}">{b[7]}</a></small></span></button></li>''')
-    items.append('<li><div class="slot"><span class="pinmini">9</span><span><strong>Store 9</strong><small>Details coming soon</small></span></div></li>')
     data = json.dumps([{"id":b[0],"n":full(b),"k":b[2],"a":esc(", ".join(x for x in [b[4],b[5]] if x)),"t":b[7],"e":e164(b[7]),"d":maps(b),"ll":[b[9],b[10]]} for b in BRANCHES], ensure_ascii=False)
     return f'''<div class="mapwrap">
       <div class="map" id="map" role="region" aria-label="Map of Mr Build stores"><p class="nojs">The map needs JavaScript. All stores are listed here.</p></div>
@@ -327,10 +341,11 @@ br_ld = [ORG]
 for b in BRANCHES:
     slug,name,kind,dist,street,town,pc,tel,mail,lat,lng = b
     d = {"@type":"HardwareStore","@id":BASE+"branches.html#"+slug,"name":full(b),"url":BASE+"branches.html#"+slug,
-         "telephone":e164(tel),"email":mail,"geo":{"@type":"GeoCoordinates","latitude":lat,"longitude":lng},
+         "telephone":e164(tel),"geo":{"@type":"GeoCoordinates","latitude":lat,"longitude":lng},
          "address":{"@type":"PostalAddress","addressLocality":town,"postalCode":pc,"addressRegion":"Limpopo","addressCountry":"ZA"},
          "openingHoursSpecification":HOURS_LD}
     if street: d["address"]["streetAddress"]=street
+    if mail: d["email"]=mail
     if kind=="mb": d["parentOrganization"]={"@id":BASE+"#org"}
     br_ld.append(d)
 def bcard(b):
@@ -344,13 +359,13 @@ def bcard(b):
         <div class="acts">
           <a class="btn btn-r btn-sm" href="tel:{e164(tel)}">Call</a>
           <a class="btn btn-sm" href="{maps(b)}" target="_blank" rel="noopener">Directions</a>
-          <a class="btn btn-sm" href="mailto:{mail}" aria-label="Email {mail}">Email</a>
+          {f'<a class="btn btn-sm" href="mailto:{mail}" aria-label="Email {mail}">Email</a>' if mail else ''}
         </div>
       </article>'''
 branches = head("branches.html","Stores and opening hours | Mr Build Limpopo",
-  "Mr Build stores in Tzaneen, Louis Trichardt, Musina, Giyani, Sibasa and Thohoyandou, plus The Builder collection points. Map, phone numbers and hours.", br_ld, leaflet=True) \
+  "Mr Build stores in Tzaneen, Mankweng, Louis Trichardt, Musina, Giyani, Sibasa and Thohoyandou, plus The Builder collection points. Map, phone numbers and hours.", br_ld, leaflet=True) \
  + nav("branches.html") + "<main>\n" + phero('Find your <span class="k">store</span>',
-  'Vhembe and Mopani.<br><span class="y">Tap a pin.</span>') \
+  '9 stores in Limpopo.<br><span class="y">Tap a pin.</span>') \
  + f'''<section class="sec bg-y dots-k slant-r" aria-labelledby="m-h">
   <div class="wrap">
     <div class="shead rv"><h2 class="beam" id="m-h">Store map</h2></div>
@@ -364,10 +379,10 @@ branches = head("branches.html","Stores and opening hours | Mr Build Limpopo",
       <button class="chip" type="button" data-filter="all" aria-pressed="true">All</button>
       <button class="chip" type="button" data-filter="vhembe" aria-pressed="false">Vhembe</button>
       <button class="chip" type="button" data-filter="mopani" aria-pressed="false">Mopani</button>
+      <button class="chip" type="button" data-filter="capricorn" aria-pressed="false">Capricorn</button>
     </div>
     <div class="bgrid">
 {chr(10).join(bcard(b) for b in BRANCHES)}
-      <article class="bcard slot9 rv" data-district="all"><p class="who">Store 9</p><h2>Coming soon</h2><p class="hrs">Details to follow.</p></article>
     </div>
     <div class="note rv"><h3>Ordered online?</h3><span>Wait for the "ready" message. Bring your order number and ID.</span></div>
   </div>

@@ -146,7 +146,9 @@ p{margin:0}
 .pylon a{display:flex;flex-direction:column;gap:14px;height:100%;text-decoration:none;background:var(--red);color:var(--white);border:var(--ln);border-radius:16px;box-shadow:var(--sh);padding:18px;
   transition:transform 180ms var(--ease-out),box-shadow 180ms var(--ease-out)}
 .pylon a:active{transform:scale(.97);box-shadow:2px 2px 0 var(--black)}
-.pylon .ibox{width:76px;height:76px;background:var(--white);border:var(--ln);border-radius:12px;display:grid;place-items:center;transform:rotate(-4deg)}
+.pylon .ph{display:block;margin:-18px -18px 0;aspect-ratio:4/3;overflow:hidden;border-bottom:var(--ln);border-radius:13px 13px 0 0}
+.pylon .ph img{width:100%;height:100%;object-fit:cover;display:block;transition:transform .5s cubic-bezier(.23,1,.32,1)}
+.pylon .ibox{margin-top:-52px;position:relative;width:76px;height:76px;background:var(--white);border:var(--ln);border-radius:12px;display:grid;place-items:center;transform:rotate(-4deg)}
 .pylon li:nth-child(even) .ibox{transform:rotate(3deg)}
 .pylon h3{font-size:clamp(22px,2.3vw,28px);text-transform:uppercase;line-height:.95}
 .pylon p{font-size:15px;font-weight:600;line-height:1.35}
@@ -157,6 +159,7 @@ p{margin:0}
 .pylon .k .ibox{background:var(--yellow)}
 @media (hover:hover) and (pointer:fine){
   .pylon a:hover{transform:translate(-3px,-3px) rotate(-1deg);box-shadow:var(--sh-lg)}
+  .pylon a:hover .ph img{transform:scale(1.06)}
   .pylon a:active{transform:scale(.97);box-shadow:2px 2px 0 var(--black)}
 }
 .ic{display:block;width:48px;height:48px;background:var(--black);-webkit-mask:center/contain no-repeat;mask:center/contain no-repeat}
@@ -210,7 +213,7 @@ p{margin:0}
 .map{min-height:460px;border:4px solid var(--black);border-radius:18px;box-shadow:var(--sh-lg);background:var(--yellow);overflow:hidden;position:relative;z-index:0}
 .map .nojs{padding:24px;font:400 20px/1.2 var(--display)}
 .stores{list-style:none;margin:0;padding:0;display:grid;gap:10px;align-content:start}
-.stores button,.stores .slot{width:100%;display:flex;align-items:center;gap:12px;text-align:left;font:inherit;color:var(--black);background:var(--white);border:var(--ln);border-radius:12px;
+.stores button{width:100%;display:flex;align-items:center;gap:12px;text-align:left;font:inherit;color:var(--black);background:var(--white);border:var(--ln);border-radius:12px;
   box-shadow:3px 3px 0 var(--black);padding:10px 12px;cursor:pointer;transition:transform 160ms var(--ease-out),background-color 160ms var(--ease-out)}
 .stores button:active{transform:scale(.97)}
 .stores button[aria-pressed=true]{background:var(--yellow)}
@@ -220,10 +223,6 @@ p{margin:0}
 .stores .tb .pinmini{background:var(--black)}
 .stores strong{display:block;font:400 19px/1 var(--display);text-transform:uppercase}
 .stores small{font-size:13px;font-weight:600}
-.stores .slot{border-style:dashed;box-shadow:none;cursor:default;background:transparent}
-.stores .slot .pinmini{background:var(--white);font:400 20px/1 var(--display)}
-.bg-k .stores .slot{color:var(--white);border-color:var(--white)}
-.bg-k .stores .slot .pinmini{color:var(--black)}
 /* leaflet pins and popups */
 .bpin{background:none;border:0}
 .bpin span{position:relative;display:grid;place-items:end center;width:46px;height:46px;border-radius:50%;background:var(--red);border:3px solid var(--black);box-shadow:3px 3px 0 var(--black);overflow:hidden;transition:transform 180ms var(--ease-out)}
@@ -239,11 +238,21 @@ p{margin:0}
 .leaflet-container{font-family:var(--body)}
 
 /* ---------- brands ---------- */
-.brands{list-style:none;margin:0;padding:0;display:grid;grid-template-columns:repeat(6,1fr);gap:16px}
-.brands li{background:var(--white);border:var(--ln);border-radius:12px;box-shadow:3px 3px 0 var(--black);display:grid;place-items:center;padding:12px;aspect-ratio:3/2}
-.brands li:nth-child(3n+1){transform:rotate(-1.5deg)}
-.brands li:nth-child(3n+2){transform:rotate(1deg)}
-.brands img{max-height:68px;width:auto;max-width:92%;object-fit:contain}
+.ticker{margin:8px calc(50% - 50vw) 0;overflow:hidden;padding:30px 0 34px}
+.band{width:112%;margin-left:-6%;background:var(--red);border-block:var(--ln);padding:16px 0;overflow:hidden;transform:rotate(-2deg)}
+.band.k{background:var(--black);transform:rotate(1.5deg);margin-top:18px}
+.track{display:flex;width:max-content;list-style:none;margin:0;padding:0;animation:tick 48s linear infinite}
+.rev .track{animation-direction:reverse;animation-duration:54s}
+.track li{flex:none;padding:0 9px}
+.track li:nth-child(odd) .stk{transform:rotate(-2deg)}
+.track li:nth-child(3n) .stk{transform:rotate(1.5deg)}
+.stk{display:flex;align-items:center;justify-content:center;height:84px;padding:0 20px;background:var(--white);border:var(--ln);border-radius:12px;box-shadow:4px 4px 0 var(--black);box-sizing:border-box}
+.k .stk{box-shadow:4px 4px 0 var(--yellow)}
+.stk img{height:52px;width:auto;max-width:190px;object-fit:contain;display:block}
+.stk.badge{padding:0;background:var(--bg);overflow:hidden}
+.stk.badge img{height:100%;max-width:230px;object-fit:contain}
+@keyframes tick{to{transform:translateX(-50%)}}
+@media (hover:hover){.ticker:hover .track{animation-play-state:paused}}
 
 /* ---------- cta band + footer ---------- */
 .cta{text-align:center}
@@ -281,8 +290,6 @@ p{margin:0}
 .status{font:400 13px/1 var(--display);text-transform:uppercase;padding:6px 9px;border:2px solid var(--black);border-radius:999px;white-space:nowrap}
 .status.open{background:var(--yellow)}
 .status.shut{background:var(--black);color:var(--white)}
-.bcard.slot9{border-style:dashed;box-shadow:none;background:transparent;justify-content:center;align-items:flex-start}
-.bcard.slot9 h2{color:var(--red)}
 .note{font-weight:700;margin-top:28px;display:flex;flex-wrap:wrap;gap:16px;align-items:center;justify-content:space-between;background:var(--yellow);border:var(--ln);border-radius:16px;box-shadow:var(--sh);padding:18px 20px}
 .note h3{font-size:26px;text-transform:uppercase}
 
@@ -327,14 +334,14 @@ p{margin:0}
 /* ---------- reveal ---------- */
 .motion .rv.pending{opacity:0;transform:translateY(18px)}
 .motion .rv.in{transition:opacity 500ms var(--ease-out) var(--d,0ms),transform 500ms var(--ease-out) var(--d,0ms)}
-.motion .pylon .rv.pending,.motion .brands .rv.pending{transform:translateY(18px) scale(.94)}
+.motion .pylon .rv.pending{transform:translateY(18px) scale(.94)}
 .motion .post .buddy{animation:wave 3.2s var(--ease-in-out) 1s infinite}
 @keyframes wave{0%,70%,100%{transform:rotate(0)}76%{transform:rotate(-5deg)}84%{transform:rotate(4deg)}92%{transform:rotate(-2deg)}}
 
 /* ---------- responsive ---------- */
 @media (max-width:1000px){
   .pylon{grid-template-columns:repeat(2,1fr)}
-  .brands{grid-template-columns:repeat(4,1fr)}
+  
   .bgrid{grid-template-columns:repeat(2,1fr)}
   .foot .grid{grid-template-columns:1fr 1fr}
 }
@@ -356,16 +363,23 @@ p{margin:0}
 }
 @media (max-width:640px){
   body{font-size:16px}
-  .stats ul{grid-template-columns:1fr;gap:6px}
-  .stats li{justify-content:flex-start}
+  .stats ul{grid-template-columns:1fr;gap:0}
+  .stats li{justify-content:space-between;align-items:center;padding:14px 0;border-top:2px solid rgba(255,255,255,.22)}
+  .stats li:first-child{border-top:0}
+  .stats b{font-size:64px}
+  .stats span{font-size:20px;text-align:right;max-width:10ch}
   .pylon{gap:14px}
   .pylon a{padding:14px;gap:10px}
-  .pylon .ibox{width:60px;height:60px}
+  .pylon .ibox{width:60px;height:60px;margin-top:-40px}
+  .pylon .ph{margin:-14px -14px 0}
   .pylon .ic{width:38px;height:38px}
   .pylon p{display:none}
-  .brands{grid-template-columns:repeat(3,1fr);gap:10px}
-  .brands li{padding:8px}
-  .brands img{max-height:46px}
+  .stk{height:62px;padding:0 14px}
+  .stk img{height:38px;max-width:140px}
+  .stk.badge img{max-width:170px}
+  .ticker{padding:22px 0 20px}
+  .track li{padding:0 6px}
+  .band{padding:12px 0}
   .bgrid{grid-template-columns:1fr}
   .row2{grid-template-columns:1fr;gap:0}
   .foot .grid{grid-template-columns:1fr 1fr;gap:24px}
@@ -380,4 +394,7 @@ p{margin:0}
   *,*::before,*::after{animation:none!important;transition-duration:1ms!important}
   .motion .rv.pending{opacity:1;transform:none}
   @view-transition{navigation:none}
+  .band{overflow-x:auto;scroll-snap-type:x mandatory}
+  .track li{scroll-snap-align:start}
+  .track li[aria-hidden]{display:none}
 }

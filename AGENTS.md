@@ -44,9 +44,15 @@ This is a concept company-profile landing page for **Mr Build**, a building supp
 - **Never animate from `scale(0)`.** Do not add animation to anything used often or triggered from the keyboard.
 - **Reduced motion:** `prefers-reduced-motion` removes movement but keeps short fades. Keep that block up to date.
 
+## Images
+- Department tiles use the lifestyle photos from the client's current site (mrbuild.co.za `/assets/*.jpg`), cropped to 480x360 in `img/dept/`.
+- Brands show as a ticker of stickers. Logos with a solid badge (see `BADGE` in `tools/build.py`) fill their sticker in the badge colour; the rest sit on white.
+
 ## Open items / TODO
-- [ ] **9th store.** The client says there are 9. Only 8 are known, so a "Store 9 / Details coming soon" slot is shown. Get the name, address, phone, hours and map location, add it to `BRANCHES` in `tools/build.py`, and remove the slot.
-- [ ] Is "Mr Build Wood" (signage in the client's drone photos) the 9th store or a department?
+- [x] 9th store is Mr Build Mankweng (from the client's flyer), added to `BRANCHES`.
+- [ ] Mankweng: get the store email and the exact map pin. The pin is town-level for now.
+- [ ] Is "Mr Build Wood" (signage in the client's drone photos) a store or a department?
+- [ ] Real store photos: ask the client for their own Google Business Profile photos or new shots of each store. Photos uploaded to Google Maps by the public belong to those users, so don't copy them.
 - [ ] Which branches are in `store-yard.jpg`, `store-front.jpg` and `store-pylon.jpg`? Alt text stays generic until we know.
 - [ ] Check each branch's map pin with the client. Some are town-level, not the exact site.
 - [ ] **Contact form backend.** The form has `data-concept="true"` and a `REPLACE_ME` Formspree URL. Wire it up and remove `data-concept`.

@@ -197,7 +197,7 @@
   if(!('IntersectionObserver' in window)) return;
   var vh = window.innerHeight;
   // Stagger cards in a grid 60ms apart
-  $$('.pylon,.bgrid,.brands,.panels,.yards').forEach(function(g){
+  $$('.pylon,.bgrid,.panels,.yards').forEach(function(g){
     $$(':scope > .rv', g).forEach(function(c,i){ c.style.setProperty("--d", (Math.min(i,8)*60)+"ms"); });
   });
   var io = new IntersectionObserver(function(entries){
