@@ -4,7 +4,7 @@ Date: 20 Nov 2026 · Scope: company-profile landing page that links to the onlin
 
 ## The company (what we could verify)
 
-- **Name / line:** Mr Build — "Your Building Buddy". Sister brand: **The Builder** ("He's Your Guy").
+- **Name / line:** Mr Build — "Your Building Buddy". Linked to The Builder (relationship unconfirmed: listed in mrbuild.co.za branch locator and as collection points on the online store).
 - **Branches (mrbuild.co.za):**
   | Branch | Address | Phone |
   |---|---|---|

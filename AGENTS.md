@@ -22,6 +22,7 @@ This is a concept company-profile landing page for **Mr Build**, a building supp
    - no "01 / 02 / 03" numbering on content that isn't a real sequence
    - no generic gradient heroes
    Write plainly, the way staff at a Limpopo hardware store would talk.
+7. **Do not describe The Builder as a sister brand, subsidiary or partner until the client confirms the relationship.** Only say its branches are collection points for online orders.
 
 ## Brand tokens (already in `:root`)
 | Token | Hex | Use |
@@ -57,8 +58,8 @@ Each section's `id` is in brackets.
    - Building materials, 292, as a full-width strip with "See all 9,572 products"
    - The counts were read from the store on 20 Nov 2026.
 6. Cut to size while you wait (`#cutting`): ink band with a tilted paper cutting-list slip.
-7. Eight branches (`#branches`), with the opening hours:
-   - Vhembe (5 branches) and Mopani (3 branches)
+7. Six branches, two collection points (`#branches`), with the opening hours:
+   - Vhembe (4 Mr Build branches, 1 The Builder collection point) and Mopani (2 Mr Build branches, 1 The Builder collection point)
    - Phone numbers right-aligned
    - Yellow "Ordered online?" collect box
 8. Story (`#story`, red band): a big "38", "From Musina to Tzaneen.", and the brands list (`#brands`).
@@ -88,6 +89,8 @@ Each section's `id` is in brackets.
 - [ ] Swap `img/logo.png` (raster, 400×133) for the vector logo when the client sends it.
 - [ ] Replace the Pexels photos (`hero`, `hardware`, `plumbing`, `paint`, `wood`, `building`) with the client's own photos.
 - [ ] Confirm the branch phone numbers, addresses and hours with the client.
+- [ ] Ask client how Mr Build and The Builder are related.
+- [ ] Confirm the '38 years' figure. A 2021 Cartrack case study says Mr Build was established in 2007.
 - [ ] Re-check the product counts before launch, since they drift.
 - [ ] Optional: add SEO meta tags, Open Graph tags and LocalBusiness JSON-LD for each branch.
 - [ ] Optional: deploy `public/` to Netlify, Vercel or Cloudflare Pages.
