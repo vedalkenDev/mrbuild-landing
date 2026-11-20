@@ -148,7 +148,8 @@ p{margin:0}
 .pylon a:active{transform:scale(.97);box-shadow:2px 2px 0 var(--black)}
 .pylon .ph{display:block;margin:-18px -18px 0;aspect-ratio:4/3;overflow:hidden;border-bottom:var(--ln);border-radius:13px 13px 0 0}
 .pylon .ph img{width:100%;height:100%;object-fit:cover;display:block;transition:transform .5s cubic-bezier(.23,1,.32,1)}
-.pylon .ibox{margin-top:-52px;position:relative;width:76px;height:76px;background:var(--white);border:var(--ln);border-radius:12px;display:grid;place-items:center;transform:rotate(-4deg)}
+.pylon .ph+.ibox{margin-top:-52px}
+.pylon .ibox{position:relative;width:76px;height:76px;background:var(--white);border:var(--ln);border-radius:12px;display:grid;place-items:center;transform:rotate(-4deg)}
 .pylon li:nth-child(even) .ibox{transform:rotate(3deg)}
 .pylon h3{font-size:clamp(22px,2.3vw,28px);text-transform:uppercase;line-height:.95}
 .pylon p{font-size:15px;font-weight:600;line-height:1.35}
@@ -238,16 +239,16 @@ p{margin:0}
 .leaflet-container{font-family:var(--body)}
 
 /* ---------- brands ---------- */
-.ticker{margin:8px calc(50% - 50vw) 0;overflow:hidden;padding:30px 0 34px}
-.band{width:112%;margin-left:-6%;background:var(--red);border-block:var(--ln);padding:16px 0;overflow:hidden;transform:rotate(-2deg)}
-.band.k{background:var(--black);transform:rotate(1.5deg);margin-top:18px}
+.ticker{margin:8px calc(50% - 50vw) 0;overflow:hidden;padding:calc(14px + 1.6vw) 0 calc(18px + 1.6vw)}
+.band{width:112%;margin-left:-6%;background:var(--red);border-block:var(--ln);padding:20px 0;overflow:hidden;transform:rotate(-1.5deg);will-change:transform;backface-visibility:hidden;outline:1px solid transparent}
+.band.k{background:var(--black);padding:16px 0 24px;transform:rotate(1deg);margin-top:calc(16px + 2.5vw)}
 .track{display:flex;width:max-content;list-style:none;margin:0;padding:0;animation:tick 48s linear infinite}
 .rev .track{animation-direction:reverse;animation-duration:54s}
 .track li{flex:none;padding:0 9px}
 .track li:nth-child(odd) .stk{transform:rotate(-2deg)}
 .track li:nth-child(3n) .stk{transform:rotate(1.5deg)}
 .stk{display:flex;align-items:center;justify-content:center;height:84px;padding:0 20px;background:var(--white);border:var(--ln);border-radius:12px;box-shadow:4px 4px 0 var(--black);box-sizing:border-box}
-.k .stk{box-shadow:4px 4px 0 var(--yellow)}
+.k .stk{border-color:var(--white);box-shadow:4px 4px 0 var(--yellow)}
 .stk img{height:52px;width:auto;max-width:190px;object-fit:contain;display:block}
 .stk.badge{padding:0;background:var(--bg);overflow:hidden}
 .stk.badge img{height:100%;max-width:230px;object-fit:contain}
@@ -340,8 +341,13 @@ p{margin:0}
 
 /* ---------- responsive ---------- */
 @media (max-width:1000px){
-  .pylon{grid-template-columns:repeat(2,1fr)}
-  
+  .pylon{gap:12px}
+  .pylon a{padding:12px;gap:10px}
+  .pylon .ph{margin:-12px -12px 0}
+  .pylon .ibox{width:56px;height:56px}
+  .pylon .ph+.ibox{margin-top:-36px}
+  .pylon .ic{width:34px;height:34px}
+  .pylon h3{font-size:18px}
   .bgrid{grid-template-columns:repeat(2,1fr)}
   .foot .grid{grid-template-columns:1fr 1fr}
 }
@@ -368,18 +374,21 @@ p{margin:0}
   .stats li:first-child{border-top:0}
   .stats b{font-size:64px}
   .stats span{font-size:20px;text-align:right;max-width:10ch}
-  .pylon{gap:14px}
+  .pylon{grid-template-columns:repeat(2,1fr);gap:14px}
   .pylon a{padding:14px;gap:10px}
-  .pylon .ibox{width:60px;height:60px;margin-top:-40px}
+  .pylon .ibox{width:60px;height:60px}
+  .pylon .ph+.ibox{margin-top:-40px}
   .pylon .ph{margin:-14px -14px 0}
   .pylon .ic{width:38px;height:38px}
+  .pylon h3{font-size:clamp(18px,5vw,22px)}
   .pylon p{display:none}
   .stk{height:62px;padding:0 14px}
   .stk img{height:38px;max-width:140px}
   .stk.badge img{max-width:170px}
-  .ticker{padding:22px 0 20px}
+  .ticker{padding:22px 0 24px}
   .track li{padding:0 6px}
-  .band{padding:12px 0}
+  .band{padding:14px 0}
+  .band.k{padding:12px 0 18px}
   .bgrid{grid-template-columns:1fr}
   .row2{grid-template-columns:1fr;gap:0}
   .foot .grid{grid-template-columns:1fr 1fr;gap:24px}
