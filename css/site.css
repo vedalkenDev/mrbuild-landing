@@ -243,7 +243,7 @@ p{margin:0}
 .brands li{background:var(--white);border:var(--ln);border-radius:12px;box-shadow:3px 3px 0 var(--black);display:grid;place-items:center;padding:12px;aspect-ratio:3/2}
 .brands li:nth-child(3n+1){transform:rotate(-1.5deg)}
 .brands li:nth-child(3n+2){transform:rotate(1deg)}
-.brands img{max-height:56px;width:auto;max-width:100%;object-fit:contain}
+.brands img{max-height:68px;width:auto;max-width:92%;object-fit:contain}
 
 /* ---------- cta band + footer ---------- */
 .cta{text-align:center}
@@ -365,7 +365,7 @@ p{margin:0}
   .pylon p{display:none}
   .brands{grid-template-columns:repeat(3,1fr);gap:10px}
   .brands li{padding:8px}
-  .brands img{max-height:40px}
+  .brands img{max-height:46px}
   .bgrid{grid-template-columns:1fr}
   .row2{grid-template-columns:1fr;gap:0}
   .foot .grid{grid-template-columns:1fr 1fr;gap:24px}
